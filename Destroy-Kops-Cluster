@@ -1,0 +1,217 @@
+
+Lucifers-MacBook-Pro:~ lucifer$ kops delete cluster \
+>        --state "s3://state.handsonk8s.ga" \
+>           --name handsonk8s.ga  \
+>        --yes
+TYPE			NAME							ID
+autoscaling-config	master-us-east-1a.masters.handsonk8s.ga-20200502160905	master-us-east-1a.masters.handsonk8s.ga-20200502160905
+autoscaling-config	nodes.handsonk8s.ga-20200502160905			nodes.handsonk8s.ga-20200502160905
+autoscaling-group	master-us-east-1a.masters.handsonk8s.ga			master-us-east-1a.masters.handsonk8s.ga
+autoscaling-group	nodes.handsonk8s.ga					nodes.handsonk8s.ga
+dhcp-options		handsonk8s.ga						dopt-0240245e32a1bac00
+iam-instance-profile	masters.handsonk8s.ga					masters.handsonk8s.ga
+iam-instance-profile	nodes.handsonk8s.ga					nodes.handsonk8s.ga
+iam-role		masters.handsonk8s.ga					masters.handsonk8s.ga
+iam-role		nodes.handsonk8s.ga					nodes.handsonk8s.ga
+instance		master-us-east-1a.masters.handsonk8s.ga			i-03c5820d6611ece09
+instance		nodes.handsonk8s.ga					i-0938ace9f2bcb7ff3
+instance		nodes.handsonk8s.ga					i-0983d909d61dc1b44
+internet-gateway	handsonk8s.ga						igw-0407768b24ae651a5
+keypair			kubernetes.handsonk8s.ga-1e:e3:64:3e:1d:a5:7d:bd:e6:38:71:37:ee:06:83:69	kubernetes.handsonk8s.ga-1e:e3:64:3e:1d:a5:7d:bd:e6:38:71:37:ee:06:83:69
+route-table		handsonk8s.ga						rtb-0511673de2076f2e8
+route53-record		api.handsonk8s.ga.					Z052905898I5RKHSHZAJ/api.handsonk8s.ga.
+route53-record		api.internal.handsonk8s.ga.				Z052905898I5RKHSHZAJ/api.internal.handsonk8s.ga.
+security-group		masters.handsonk8s.ga					sg-0280b32ea9e37650c
+security-group		nodes.handsonk8s.ga					sg-0e5899c2ce193c431
+subnet			us-east-1a.handsonk8s.ga				subnet-08c08673d9f61a90b
+subnet			us-east-1b.handsonk8s.ga				subnet-0c14d67ae725c9e31
+volume			a.etcd-events.handsonk8s.ga				vol-05ece8182522dfd3d
+volume			a.etcd-main.handsonk8s.ga				vol-0fc276facb0f25e77
+vpc			handsonk8s.ga						vpc-011921ec697f084df
+
+route53-record:Z052905898I5RKHSHZAJ/api.handsonk8s.ga.	ok
+autoscaling-group:master-us-east-1a.masters.handsonk8s.ga	ok
+keypair:kubernetes.handsonk8s.ga-1e:e3:64:3e:1d:a5:7d:bd:e6:38:71:37:ee:06:83:6ok
+autoscaling-group:nodes.handsonk8s.ga	ok
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+instance:i-03c5820d6611ece09	ok
+iam-instance-profile:masters.handsonk8s.ga	ok
+instance:i-0983d909d61dc1b44	ok
+instance:i-0938ace9f2bcb7ff3	ok
+iam-instance-profile:nodes.handsonk8s.ga	ok
+iam-role:masters.handsonk8s.ga	ok
+iam-role:nodes.handsonk8s.ga	ok
+autoscaling-config:master-us-east-1a.masters.handsonk8s.ga-20200502160905	ok
+autoscaling-config:nodes.handsonk8s.ga-20200502160905	ok
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+volume:vol-0fc276facb0f25e77	still has dependencies, will retry
+volume:vol-05ece8182522dfd3d	still has dependencies, will retry
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+security-group:sg-0280b32ea9e37650c	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	security-group:sg-0e5899c2ce193c431
+	volume:vol-0fc276facb0f25e77
+	security-group:sg-0280b32ea9e37650c
+	internet-gateway:igw-0407768b24ae651a5
+	dhcp-options:dopt-0240245e32a1bac00
+	route-table:rtb-0511673de2076f2e8
+	subnet:subnet-08c08673d9f61a90b
+	volume:vol-05ece8182522dfd3d
+	subnet:subnet-0c14d67ae725c9e31
+	vpc:vpc-011921ec697f084df
+volume:vol-0fc276facb0f25e77	still has dependencies, will retry
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+volume:vol-05ece8182522dfd3d	still has dependencies, will retry
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+security-group:sg-0280b32ea9e37650c	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	volume:vol-05ece8182522dfd3d
+	subnet:subnet-0c14d67ae725c9e31
+	vpc:vpc-011921ec697f084df
+	security-group:sg-0e5899c2ce193c431
+	volume:vol-0fc276facb0f25e77
+	security-group:sg-0280b32ea9e37650c
+	internet-gateway:igw-0407768b24ae651a5
+	dhcp-options:dopt-0240245e32a1bac00
+	route-table:rtb-0511673de2076f2e8
+	subnet:subnet-08c08673d9f61a90b
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+volume:vol-0fc276facb0f25e77	still has dependencies, will retry
+volume:vol-05ece8182522dfd3d	still has dependencies, will retry
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+security-group:sg-0280b32ea9e37650c	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	subnet:subnet-08c08673d9f61a90b
+	route-table:rtb-0511673de2076f2e8
+	volume:vol-05ece8182522dfd3d
+	subnet:subnet-0c14d67ae725c9e31
+	vpc:vpc-011921ec697f084df
+	security-group:sg-0e5899c2ce193c431
+	volume:vol-0fc276facb0f25e77
+	dhcp-options:dopt-0240245e32a1bac00
+	security-group:sg-0280b32ea9e37650c
+	internet-gateway:igw-0407768b24ae651a5
+volume:vol-05ece8182522dfd3d	ok
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+volume:vol-0fc276facb0f25e77	ok
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+security-group:sg-0280b32ea9e37650c	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	subnet:subnet-08c08673d9f61a90b
+	route-table:rtb-0511673de2076f2e8
+	subnet:subnet-0c14d67ae725c9e31
+	vpc:vpc-011921ec697f084df
+	security-group:sg-0e5899c2ce193c431
+	dhcp-options:dopt-0240245e32a1bac00
+	security-group:sg-0280b32ea9e37650c
+	internet-gateway:igw-0407768b24ae651a5
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+security-group:sg-0280b32ea9e37650c	ok
+Not all resources deleted; waiting before reattempting deletion
+	subnet:subnet-0c14d67ae725c9e31
+	vpc:vpc-011921ec697f084df
+	security-group:sg-0e5899c2ce193c431
+	internet-gateway:igw-0407768b24ae651a5
+	dhcp-options:dopt-0240245e32a1bac00
+	route-table:rtb-0511673de2076f2e8
+	subnet:subnet-08c08673d9f61a90b
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	security-group:sg-0e5899c2ce193c431
+	internet-gateway:igw-0407768b24ae651a5
+	dhcp-options:dopt-0240245e32a1bac00
+	route-table:rtb-0511673de2076f2e8
+	subnet:subnet-08c08673d9f61a90b
+	subnet:subnet-0c14d67ae725c9e31
+	vpc:vpc-011921ec697f084df
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	subnet:subnet-0c14d67ae725c9e31
+	vpc:vpc-011921ec697f084df
+	security-group:sg-0e5899c2ce193c431
+	internet-gateway:igw-0407768b24ae651a5
+	dhcp-options:dopt-0240245e32a1bac00
+	subnet:subnet-08c08673d9f61a90b
+	route-table:rtb-0511673de2076f2e8
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	internet-gateway:igw-0407768b24ae651a5
+	dhcp-options:dopt-0240245e32a1bac00
+	route-table:rtb-0511673de2076f2e8
+	subnet:subnet-08c08673d9f61a90b
+	subnet:subnet-0c14d67ae725c9e31
+	vpc:vpc-011921ec697f084df
+	security-group:sg-0e5899c2ce193c431
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	internet-gateway:igw-0407768b24ae651a5
+	dhcp-options:dopt-0240245e32a1bac00
+	subnet:subnet-08c08673d9f61a90b
+	route-table:rtb-0511673de2076f2e8
+	subnet:subnet-0c14d67ae725c9e31
+	vpc:vpc-011921ec697f084df
+	security-group:sg-0e5899c2ce193c431
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	security-group:sg-0e5899c2ce193c431
+	internet-gateway:igw-0407768b24ae651a5
+	dhcp-options:dopt-0240245e32a1bac00
+	subnet:subnet-08c08673d9f61a90b
+	route-table:rtb-0511673de2076f2e8
+	vpc:vpc-011921ec697f084df
+	subnet:subnet-0c14d67ae725c9e31
+subnet:subnet-0c14d67ae725c9e31	still has dependencies, will retry
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+internet-gateway:igw-0407768b24ae651a5	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+Not all resources deleted; waiting before reattempting deletion
+	subnet:subnet-0c14d67ae725c9e31
+	vpc:vpc-011921ec697f084df
+	security-group:sg-0e5899c2ce193c431
+	internet-gateway:igw-0407768b24ae651a5
+	dhcp-options:dopt-0240245e32a1bac00
+	route-table:rtb-0511673de2076f2e8
+	subnet:subnet-08c08673d9f61a90b
+subnet:subnet-0c14d67ae725c9e31	ok
+subnet:subnet-08c08673d9f61a90b	still has dependencies, will retry
+security-group:sg-0e5899c2ce193c431	still has dependencies, will retry
+internet-gateway:igw-0407768b24ae651a5	ok
+Not all resources deleted; waiting before reattempting deletion
+	subnet:subnet-08c08673d9f61a90b
+	route-table:rtb-0511673de2076f2e8
+	vpc:vpc-011921ec697f084df
+	security-group:sg-0e5899c2ce193c431
+	dhcp-options:dopt-0240245e32a1bac00
+subnet:subnet-08c08673d9f61a90b	ok
+security-group:sg-0e5899c2ce193c431	ok
+route-table:rtb-0511673de2076f2e8	ok
+vpc:vpc-011921ec697f084df	ok
+dhcp-options:dopt-0240245e32a1bac00	ok
+Deleted kubectl config for handsonk8s.ga
+
+Deleted cluster: "handsonk8s.ga"
