@@ -22,9 +22,7 @@ aws s3 mb s3://state.handsonk8s.ga
 
 # Install `kops` and `kubectl` 
 In my case 
-Installing Kops 
-
-# Add you domain / cluster name is Hosted Zone using Route 53 
+Installing Kops on macOS
 
 ```bash
 curl -Lo kops https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-darwin-amd64
@@ -39,4 +37,44 @@ curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(cur
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 ```
+## Add you domain / cluster name is Hosted Zone using Route 53 
+
 Make sure TTL should 60 sec or less than that for urly DNS propogation.
+
+## Create kops cluster
+
+```bash
+kops create cluster \
+--state "s3://state.handsonk8s.ga" \
+--zones "us-east-1a,us-east-1b"  \
+--master-count 1 \
+--master-size=t2.micro \
+--node-count 2 \
+--node-size=t2.micro \
+--name handsonk8s.ga  \
+--yes
+```
+
+--state:- Your S3 bucket
+--master-count:- No of Master node count here is set 1 
+--master-size:- Instance type or size you can set while creating cluster
+--node-count:- No of Worker node count here is set 2
+--node-size:- Instance type or size you can set while creating cluster
+--name:- Your Hosted zone name
+
+## Validate kops cluster
+
+```bash
+kops validate cluster \
+       --state "s3://state.handsonk8s.ga" \
+       --name handsonk8s.ga
+```
+
+## Distroy kops Cluster
+
+```bash
+kops delete cluster \
+       --state "s3://state.handsonk8s.ga" \
+          --name handsonk8s.ga  \
+       --yes
+```
