@@ -1,0 +1,308 @@
+
+Lucifers-MacBook-Pro:.ssh lucifer$ kops create cluster \
+> --state "s3://state.handsonk8s.ga" \
+> --zones "us-east-1a,us-east-1b"  \
+> --master-count 1 \
+> --master-size=t2.micro \
+> --node-count 2 \
+> --node-size=t2.micro \
+> --name handsonk8s.ga  \
+> --yes
+I0502 21:38:34.962459    1021 create_cluster.go:562] Inferred --cloud=aws from zone "us-east-1a"
+I0502 21:38:36.270461    1021 subnets.go:184] Assigned CIDR 172.20.32.0/19 to subnet us-east-1a
+I0502 21:38:36.270498    1021 subnets.go:184] Assigned CIDR 172.20.64.0/19 to subnet us-east-1b
+I0502 21:38:40.882145    1021 create_cluster.go:1568] Using SSH public key: /Users/lucifer/.ssh/id_rsa.pub
+I0502 21:38:49.814521    1021 executor.go:103] Tasks: 0 done / 89 total; 45 can run
+I0502 21:38:53.273458    1021 vfs_castore.go:729] Issuing new certificate: "etcd-manager-ca-events"
+I0502 21:38:53.379710    1021 vfs_castore.go:729] Issuing new certificate: "etcd-peers-ca-events"
+I0502 21:38:53.415142    1021 vfs_castore.go:729] Issuing new certificate: "etcd-clients-ca"
+I0502 21:38:53.421999    1021 vfs_castore.go:729] Issuing new certificate: "apiserver-aggregator-ca"
+I0502 21:38:53.517011    1021 vfs_castore.go:729] Issuing new certificate: "etcd-peers-ca-main"
+I0502 21:38:53.522753    1021 vfs_castore.go:729] Issuing new certificate: "ca"
+I0502 21:38:53.567309    1021 vfs_castore.go:729] Issuing new certificate: "etcd-manager-ca-main"
+I0502 21:38:57.543839    1021 executor.go:103] Tasks: 45 done / 89 total; 25 can run
+I0502 21:39:00.516111    1021 vfs_castore.go:729] Issuing new certificate: "master"
+I0502 21:39:00.604224    1021 vfs_castore.go:729] Issuing new certificate: "kops"
+I0502 21:39:00.619100    1021 vfs_castore.go:729] Issuing new certificate: "apiserver-proxy-client"
+I0502 21:39:00.821009    1021 vfs_castore.go:729] Issuing new certificate: "apiserver-aggregator"
+I0502 21:39:00.987270    1021 vfs_castore.go:729] Issuing new certificate: "kube-scheduler"
+I0502 21:39:00.991656    1021 vfs_castore.go:729] Issuing new certificate: "kubecfg"
+I0502 21:39:01.139767    1021 vfs_castore.go:729] Issuing new certificate: "kube-controller-manager"
+I0502 21:39:01.433728    1021 vfs_castore.go:729] Issuing new certificate: "kubelet-api"
+I0502 21:39:01.699110    1021 vfs_castore.go:729] Issuing new certificate: "kubelet"
+I0502 21:39:01.845133    1021 vfs_castore.go:729] Issuing new certificate: "kube-proxy"
+I0502 21:39:04.396512    1021 executor.go:103] Tasks: 70 done / 89 total; 17 can run
+I0502 21:39:08.575330    1021 executor.go:103] Tasks: 87 done / 89 total; 2 can run
+I0502 21:39:09.957526    1021 executor.go:103] Tasks: 89 done / 89 total; 0 can run
+I0502 21:39:09.957598    1021 dns.go:155] Pre-creating DNS records
+I0502 21:39:13.223557    1021 update_cluster.go:305] Exporting kubecfg for cluster
+kops has set your kubectl context to handsonk8s.ga
+
+Cluster is starting.  It should be ready in a few minutes.
+
+Suggestions:
+ * validate cluster: kops validate cluster
+ * list nodes: kubectl get nodes --show-labels
+ * ssh to the master: ssh -i ~/.ssh/id_rsa admin@api.handsonk8s.ga
+ * the admin user is specific to Debian. If not using Debian please use the appropriate user based on your OS.
+ * read about installing addons at: https://github.com/kubernetes/kops/blob/master/docs/operations/addons.md.
+
+Lucifers-MacBook-Pro:.ssh lucifer$ kops validate cluster \
+>        --state "s3:// state.handsonk8s.ga" \
+>        --name handsonk8s.ga
+
+error building path for "s3:// state.handsonk8s.ga": invalid s3 path: "s3:// state.handsonk8s.ga"
+Lucifers-MacBook-Pro:.ssh lucifer$ kops validate cluster        --state "s3:// state.handsonk8s.ga"        --name handsonk8s.ga
+Lucifers-MacBook-Pro:.ssh lucifer$ kops validate cluster \
+>        --state "s3://state.handsonk8s.ga" \
+>        --name handsonk8s.ga
+Validating cluster handsonk8s.ga
+
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-us-east-1a	Master	t2.micro	1	1	us-east-1a
+nodes			Node	t2.micro	2	2	us-east-1a,us-east-1b
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+Lucifers-MacBook-Pro:.ssh lucifer$ 
+Lucifers-MacBook-Pro:.ssh lucifer$ kops validate cluster        --state "s3://state.handsonk8s.ga"        --name handsonk8s.ga
+Validating cluster handsonk8s.ga
+
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-us-east-1a	Master	t2.micro	1	1	us-east-1a
+nodes			Node	t2.micro	2	2	us-east-1a,us-east-1b
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+Lucifers-MacBook-Pro:.ssh lucifer$ kops validate cluster \
+>        --state "s3://state.handsonk8s.ga" \
+>        --name handsonk8s.ga
+Validating cluster handsonk8s.ga
+
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-us-east-1a	Master	t2.micro	1	1	us-east-1a
+nodes			Node	t2.micro	2	2	us-east-1a,us-east-1b
+
+NODE STATUS
+NAME				ROLE	READY
+ip-172-20-58-134.ec2.internal	node	True
+ip-172-20-60-119.ec2.internal	master	True
+
+VALIDATION ERRORS
+KIND	NAME							MESSAGE
+Machine	i-0983d909d61dc1b44					machine "i-0983d909d61dc1b44" has not yet joined cluster
+Pod	kube-system/kube-dns-autoscaler-594dcb44b5-jtttp	kube-system pod "kube-dns-autoscaler-594dcb44b5-jtttp" is pending
+Pod	kube-system/kube-dns-b84c667f4-vlnk7			kube-system pod "kube-dns-b84c667f4-vlnk7" is pending
+
+Validation Failed
+Lucifers-MacBook-Pro:.ssh lucifer$ 
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/kops/master/addons/metrics-server/v1.8.x.yaml
+serviceaccount/metrics-server created
+clusterrolebinding.rbac.authorization.k8s.io/metrics-server:system:auth-delegator created
+rolebinding.rbac.authorization.k8s.io/metrics-server-auth-reader created
+clusterrole.rbac.authorization.k8s.io/system:metrics-server created
+clusterrole.rbac.authorization.k8s.io/system:aggregated-metrics-reader created
+clusterrolebinding.rbac.authorization.k8s.io/system:metrics-server created
+apiservice.apiregistration.k8s.io/v1beta1.metrics.k8s.io created
+service/metrics-server created
+
+
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+namespace/kubernetes-dashboard created
+serviceaccount/kubernetes-dashboard created
+service/kubernetes-dashboard created
+secret/kubernetes-dashboard-certs created
+secret/kubernetes-dashboard-csrf created
+secret/kubernetes-dashboard-key-holder created
+configmap/kubernetes-dashboard-settings created
+role.rbac.authorization.k8s.io/kubernetes-dashboard created
+clusterrole.rbac.authorization.k8s.io/kubernetes-dashboard created
+rolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
+clusterrolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
+deployment.apps/kubernetes-dashboard created
+service/dashboard-metrics-scraper created
+deployment.apps/dashboard-metrics-scraper created
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl cluster-info
+Kubernetes master is running at https://api.handsonk8s.ga
+KubeDNS is running at https://api.handsonk8s.ga/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://api.handsonk8s.ga
+  name: handsonk8s.ga
+contexts:
+- context:
+    cluster: handsonk8s.ga
+    user: handsonk8s.ga
+  name: handsonk8s.ga
+current-context: handsonk8s.ga
+kind: Config
+preferences: {}
+users:
+- name: handsonk8s.ga
+  user:
+    client-certificate-data: REDACTED
+    client-key-data: REDACTED
+    password: xz2sVd5GD1QasUDfNB5H5orIsrk9kuQt
+    username: admin
+- name: handsonk8s.ga-basic-auth
+  user:
+    password: xz2sVd5GD1QasUDfNB5H5orIsrk9kuQt
+    username: admin
+    
+    
+    
+                           
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl -n kubernetes-dashboard edit service kubernetes-dashboard
+error: services "kubernetes-dashboard" is invalid
+A copy of your changes has been stored to "/var/folders/c1/n_vxn2ln5zx6w7bvxhxcfbj40000gn/T/kubectl-edit-0bppf.yaml"
+error: Edit cancelled, no valid changes were saved.
+Lucifers-MacBook-Pro:.ssh lucifer$ cd k8s-dashboard
+-bash: cd: k8s-dashboard: No such file or directory
+Lucifers-MacBook-Pro:.ssh lucifer$ mkdir k8s-dashboard
+Lucifers-MacBook-Pro:.ssh lucifer$ cd k8s-dashboard/
+Lucifers-MacBook-Pro:k8s-dashboard lucifer$ vi admin-user.yaml
+Lucifers-MacBook-Pro:k8s-dashboard lucifer$ vi dashboard-adminuser.yaml
+Lucifers-MacBook-Pro:k8s-dashboard lucifer$ cd ..
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl create -f k8s-dashboard/
+serviceaccount/admin-user created
+clusterrolebinding.rbac.authorization.k8s.io/admin-user created
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+Name:         admin-user-token-cz2kb
+Namespace:    kubernetes-dashboard
+Labels:       <none>
+Annotations:  kubernetes.io/service-account.name: admin-user
+              kubernetes.io/service-account.uid: a0dd6351-aec1-4293-8291-504dc1461357
+
+Type:  kubernetes.io/service-account-token
+
+Data
+====
+ca.crt:     1042 bytes
+namespace:  20 bytes
+token:      eyJhbGciOiJSUzI1NiIsImtpZCI6Im5fU0o1ZkxoWU4zNTVPd25Id0hQMFRfNXhicTR5VG9PUUtXM21sZVlFT3MifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLWN6MmtiIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJhMGRkNjM1MS1hZWMxLTQyOTMtODI5MS01MDRkYzE0NjEzNTciLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZXJuZXRlcy1kYXNoYm9hcmQ6YWRtaW4tdXNlciJ9.JiqXKxHlrs5eJsa6oQukmD_jtwzuNZ2kDjbuBlhqnKObQUT5cAV-RrWNkjmNlYkxN9RH761mVSMhFyvIJwNOkJNpw52f0eoG8bM9ERSndALNGOULgH33d4bjL-aDtnLTfDb2oMLHP2YH7bB64wHEv8ibVjRdz1P3is2ILh1axmjwhI3ecPlcRbyljG7Ws2s7ACp0gyXsGbG933y1xPhA4oiUtcJP3R5YIfYPxE4RAAqVMwk3ldemv19DvnnbWHvhW7OoLLjjdvIv9a1WztAzCPKHlN0ZZG-ILNTtmrpDGsLoYvNkkLYN-n2oPPIbrlWtEEx01eMUBvfZwgMyKDRMgw
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl get nodes
+NAME                            STATUS   ROLES    AGE   VERSION
+ip-172-20-58-134.ec2.internal   Ready    node     19m   v1.16.8
+ip-172-20-60-119.ec2.internal   Ready    master   21m   v1.16.8
+ip-172-20-91-12.ec2.internal    Ready    node     19m   v1.16.8
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl get po -o wide
+No resources found in default namespace.
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl get po -o wide -n kubernetes-dashboard
+NAME                                        READY   STATUS    RESTARTS   AGE   IP           NODE                            NOMINATED NODE   READINESS GATES
+dashboard-metrics-scraper-c79c65bb7-tzfnf   1/1     Running   0          18m   100.96.2.3   ip-172-20-91-12.ec2.internal    <none>           <none>
+kubernetes-dashboard-56484d4c5-v8zql        1/1     Running   0          18m   100.96.1.4   ip-172-20-58-134.ec2.internal   <none>           <none>
+Lucifers-MacBook-Pro:.ssh lucifer$ mkdir prometheus
+Lucifers-MacBook-Pro:.ssh lucifer$ cd prometheus/
+Lucifers-MacBook-Pro:prometheus lucifer$ vi clusterRole.yaml
+Lucifers-MacBook-Pro:prometheus lucifer$ vi config-map.yaml
+Lucifers-MacBook-Pro:prometheus lucifer$ vi prometheus-deployment.yaml
+Lucifers-MacBook-Pro:prometheus lucifer$ prometheus-service.yaml
+-bash: prometheus-service.yaml: command not found
+Lucifers-MacBook-Pro:prometheus lucifer$ vi prometheus-service.yaml
+Lucifers-MacBook-Pro:prometheus lucifer$ cd ..
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl create ns monitoring
+namespace/monitoring created
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl create -f prometheus/
+clusterrole.rbac.authorization.k8s.io/prometheus created
+clusterrolebinding.rbac.authorization.k8s.io/prometheus created
+configmap/prometheus-server-conf created
+deployment.apps/prometheus-deployment created
+service/prometheus-service created
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl cluster-info
+Kubernetes master is running at https://api.handsonk8s.ga
+KubeDNS is running at https://api.handsonk8s.ga/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+Lucifers-MacBook-Pro:.ssh lucifer$ systemctl status kubelet -l
+-bash: systemctl: command not found
+Lucifers-MacBook-Pro:.ssh lucifer$ 
+Lucifers-MacBook-Pro:.ssh lucifer$ mkdir grafana
+Lucifers-MacBook-Pro:.ssh lucifer$ cd grafana/
+Lucifers-MacBook-Pro:grafana lucifer$ vi grafana-datasource-config.yaml
+Lucifers-MacBook-Pro:grafana lucifer$ vi grafana-deployment.yaml
+Lucifers-MacBook-Pro:grafana lucifer$ vi grafana-service.yaml
+Lucifers-MacBook-Pro:grafana lucifer$ cd .. 
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl create -f grafana/
+configmap/grafana-datasources created
+deployment.apps/grafana created
+service/grafana created
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl delete -f grafana/
+configmap "grafana-datasources" deleted
+deployment.apps "grafana" deleted
+service "grafana" deleted
+Lucifers-MacBook-Pro:.ssh lucifer$ kubectl create -f grafana/
+configmap/grafana-datasources created
+deployment.apps/grafana created
+service/grafana created
+
+
+Lucifers-MacBook-Pro:grafana lucifer$ vi grafana-datasource-config.yaml
+Lucifers-MacBook-Pro:grafana lucifer$ vi deployment.yaml
+Lucifers-MacBook-Pro:grafana lucifer$ vi service.yaml
+Lucifers-MacBook-Pro:grafana lucifer$ vi service.yaml
+Lucifers-MacBook-Pro:grafana lucifer$ vi service.yaml
+Lucifers-MacBook-Pro:grafana lucifer$ kubectl create -f grafana-datasource-config.yaml
+configmap/grafana-datasources created
+Lucifers-MacBook-Pro:grafana lucifer$ kubectl create -f deployment.yaml
+deployment.apps/grafana created
+Lucifers-MacBook-Pro:grafana lucifer$ kubectl create -f service.yaml
+service/grafana created
+
+
+
+Lucifers-MacBook-Pro:grafana lucifer$ mkdir alertmanager
+Lucifers-MacBook-Pro:grafana lucifer$ cd alertmanager/
+Lucifers-MacBook-Pro:alertmanager lucifer$ vi AlertManagerConfigmap.yaml
+Lucifers-MacBook-Pro:alertmanager lucifer$ vi Alert-Manager-Deployment.yaml
+Lucifers-MacBook-Pro:alertmanager lucifer$ vi Alert-Manager-Service.yaml
+
+
+Lucifers-MacBook-Pro:grafana lucifer$ kubectl create -f alertmanager/
+deployment.apps/alertmanager created
+service/alertmanager created
+configmap/alertmanager-config created
+Lucifers-MacBook-Pro:grafana lucifer$ kubectl get ns
+NAME                   STATUS   AGE
+default                Active   111m
+kube-node-lease        Active   111m
+kube-public            Active   111m
+kube-system            Active   111m
+kubernetes-dashboard   Active   107m
+monitoring             Active   79m
+
+
+
+Lucifers-MacBook-Pro:grafana lucifer$ kubectl get po -n monitoring
+NAME                                     READY   STATUS              RESTARTS   AGE
+alertmanager-6c666985cc-p8nwl            0/1     ContainerCreating   0          5m29s
+grafana-6d7cc69ffb-6lh8r                 0/1     Pending             0          12m
+prometheus-deployment-77cb49fb5d-rwjv6   1/1     Running             0          79m
+Lucifers-MacBook-Pro:grafana lucifer$ kubectl get po -n kubernetes-dashboard
+NAME                                        READY   STATUS    RESTARTS   AGE
+dashboard-metrics-scraper-c79c65bb7-tzfnf   1/1     Running   0          108m
+kubernetes-dashboard-56484d4c5-v8zql        1/1     Running   0          108m
+Lucifers-MacBook-Pro:grafana lucifer$ 
