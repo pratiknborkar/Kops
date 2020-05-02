@@ -1,0 +1,18 @@
+aws configure
+
+AWS Access Key ID: YOUR_ACCESS_KEY
+AWS Secret Access Key: YOUR_SECRET_ACCESS_KEY
+Default region name [None]:
+Default output format [None]:
+
+aws iam list-users
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "alvise",
+            "UserId": ...,
+            "Arn": ...
+        }
+    ]
+}
