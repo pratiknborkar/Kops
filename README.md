@@ -1,5 +1,5 @@
 # Configure AWS CLI 
-
+## AWS IAM 
 User must have Administrative access 
 {
     "Version": "2012-10-17",
@@ -14,8 +14,9 @@ User must have Administrative access
 
 # Create S3 Bucket 
 
-
+```bash
 aws s3 mb s3://state.handsonk8s.ga
+```
 
 # Add you domain / cluster name is Hosted Zone using Route 53 
 
