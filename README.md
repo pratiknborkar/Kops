@@ -1,5 +1,5 @@
 ## Configure AWS CLI and Create user
-User must have Administrative access or for better security you can create user manually with following Policy  AmazonEC2FullAccess,AmazonRoute53FullAccess,AmazonS3FullAccess,AmazonVPCFullAccess
+User must have Administrative access or for better security you can create user manually with following Policy  AmazonEC2FullAccess, AmazonRoute53FullAccess, AmazonS3FullAccess, AmazonVPCFullAccess
 
 ```bash
 {
@@ -14,7 +14,7 @@ User must have Administrative access or for better security you can create user 
 }
 ```
 
-## Create S3 Bucket on my case state.handsonk8s.ga
+## Create S3 Bucket in my case state.handsonk8s.ga
 
 ```bash
 aws s3 mb s3://state.handsonk8s.ga
@@ -78,9 +78,9 @@ id_rsa		id_rsa.pub	known_hosts
 kops create cluster \
 --state "s3://state.handsonk8s.ga" \
 --zones "us-east-1a,us-east-1b"  \
---master-count 1 \
+--master-count 13 \
 --master-size=t2.micro \
---node-count 2 \
+--node-count 3 \
 --node-size=t2.micro \
 --name handsonk8s.ga  \
 --yes
@@ -106,11 +106,20 @@ kops validate cluster \
        --name handsonk8s.ga
 ```
 
+## Update kops cluster (Always update cluster after changing Security Groups)
+
+```bash
+kops update cluster \
+       --state "s3://state.handsonk8s.ga" \
+       --name cluster.k8s.local  \
+       --yes
+```
+
 ## Distroy kops Cluster
 
 ```bash
 kops delete cluster \
        --state "s3://state.handsonk8s.ga" \
-          --name handsonk8s.ga  \
+       --name handsonk8s.ga  \
        --yes
 ```
