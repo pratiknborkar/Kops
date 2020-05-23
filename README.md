@@ -1,5 +1,5 @@
 ## Configure AWS CLI and Create user
-User must have Administrative access 
+User must have Administrative access or for better security you can create user manually with following Policy  AmazonEC2FullAccess,AmazonRoute53FullAccess,AmazonS3FullAccess,AmazonVPCFullAccess
 
 ```bash
 {
