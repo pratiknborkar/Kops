@@ -78,7 +78,7 @@ id_rsa		id_rsa.pub	known_hosts
 kops create cluster \
 --state "s3://state.handsonk8s.ga" \
 --zones "us-east-1a,us-east-1b"  \
---master-count 13 \
+--master-count 3 \
 --master-size=t2.micro \
 --node-count 3 \
 --node-size=t2.micro \
