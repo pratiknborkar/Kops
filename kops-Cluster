@@ -1,4 +1,3 @@
-
 Lucifers-MacBook-Pro:.ssh lucifer$ kops create cluster \
 > --state "s3://state.handsonk8s.ga" \
 > --zones "us-east-1a,us-east-1b"  \
